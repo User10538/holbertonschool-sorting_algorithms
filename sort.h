@@ -35,6 +35,15 @@ void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
 
 /**
+ * selection_sort - function that sorts an array of integers
+ * in ascending order using the Selection sort algorithm
+ * 
+ * @array: int
+ * @size: size_t
+ */
+void selection_sort(int *array, size_t size);
+
+/**
  * insertion_sort_list - function that sorts a doubly linked list of 
  * integers in ascending order using the Insertion sort algorithm
  *
