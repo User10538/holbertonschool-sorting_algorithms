@@ -5,7 +5,7 @@
 #include "sort.h"
 
 /**
- * bubble_sort - function that sorts an array of integers in 
+ * bubble_sort - function that sorts an array of integers in
  * ascending order using the Bubble sort algorithm
  *
  * @array: int array
@@ -30,12 +30,12 @@ void bubble_sort(int *array, size_t size)
 				temp = array[index];
 				array[index] = array[index + 1];
 				array[index + 1] = temp;
-				
+
 				/*Print the array after the swap*/
-				for (k = 0; k <size; k++)
+				for (k = 0; k < size; k++)
 				{
 					printf("%d", array[k]);
-					if (k <size - 1)
+					if (k < size - 1)
 						printf(", ");
 				}
 				printf("\n");
