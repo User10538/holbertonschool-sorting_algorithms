@@ -1,12 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
- * swap - swaps two elements in an array
- * @array: The array of integers
- * @i: Index of the first element to swap
- * @j: Index of the second element to swap
- */
 void swap(int *array, int i, int j)
 {
     int temp;
@@ -16,24 +10,15 @@ void swap(int *array, int i, int j)
     array[i] = array[j];
     array[j] = temp;
 
-    for (k = 0; k < 10; k++)
+    for (k = 0; k < 20; k++)
     {
         printf("%d", array[k]);
-        if (k < 9)
-        {
+        if (k < 19)
             printf(", ");
-        }
     }
     printf("\n");
 }
 
-/**
- * partition - Lomuto partition scheme for Quick Sort
- * @array: The array of integers
- * @low: The starting index of the partition
- * @high: The ending index of the partition
- * Return: The index where the pivot is placed
- */
 int partition(int *array, int low, int high)
 {
     int pivot;
@@ -56,12 +41,6 @@ int partition(int *array, int low, int high)
     return (i + 1);
 }
 
-/**
- * quick_sort_recursive - Recursively applies quick sort to array
- * @array: The array of integers
- * @low: The starting index of the array
- * @high: The ending index of the array
- */
 void quick_sort_recursive(int *array, int low, int high)
 {
     int pivot_index;
@@ -74,11 +53,6 @@ void quick_sort_recursive(int *array, int low, int high)
     }
 }
 
-/**
- * quick_sort - Sorts the array using quick sort
- * @array: The array to be sorted
- * @size: The size of the array
- */
 void quick_sort(int *array, size_t size)
 {
     if (array == NULL || size < 2)
