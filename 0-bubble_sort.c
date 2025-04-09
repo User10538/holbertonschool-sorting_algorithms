@@ -14,7 +14,7 @@
 void bubble_sort(int *array, size_t size)
 {
 
-	size_t pass, index;
+	size_t pass, index, k;
 	int temp, swap;
 
 	if (array == NULL || size < 2)
@@ -30,12 +30,21 @@ void bubble_sort(int *array, size_t size)
 				temp = array[index];
 				array[index] = array[index + 1];
 				array[index + 1] = temp;
+				
+				/*Print the array after the swap*/
+				for (k = 0; k <size; k++)
+				{
+					printf("%d", array[k]);
+					if (k <size - 1)
+						printf(", ");
+				}
+				printf("\n");
 				swap = 1;
-				print_array(array, size);
 			}
-		if (!swap)
-		break;
 		}
+
+		if (!swap)
+			break;
 	}
 }
 
