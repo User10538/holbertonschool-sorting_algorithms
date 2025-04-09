@@ -14,9 +14,9 @@
  */
 typedef struct listint_s
 {
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
 /**
@@ -33,9 +33,9 @@ void print_list(const listint_t *list);
  * @size: Number of elements in @array
  */
 void print_array(const int *array, size_t size);
-	
+
 /**
- * bubble_sort - function that sorts an array of integers in 
+ * bubble_sort - function that sorts an array of integers in
  * ascending order using the Bubble sort algorithm
  *
  * @array: int array
