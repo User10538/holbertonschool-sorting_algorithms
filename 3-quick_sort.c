@@ -1,65 +1,50 @@
-#include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
-
-void swap(int *array, int i, int j)
-{
-    int temp;
-    size_t k;
-
-    temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-
-    for (k = 0; k < 20; k++)
-    {
-        printf("%d", array[k]);
-        if (k < 19)
-            printf(", ");
-    }
-    printf("\n");
-}
-
-int partition(int *array, int low, int high)
-{
-    int pivot;
-    int i;
-    int j;
-
-    pivot = array[high];
-    i = low - 1;
-
-    for (j = low; j < high; j++)
-    {
-        if (array[j] <= pivot)
-        {
-            i++;
-            swap(array, i, j);
-        }
-    }
-
-    swap(array, i + 1, high);
-    return (i + 1);
-}
-
-void quick_sort_recursive(int *array, int low, int high)
-{
-    int pivot_index;
-
-    if (low < high)
-    {
-        pivot_index = partition(array, low, high);
-        quick_sort_recursive(array, low, pivot_index - 1);
-        quick_sort_recursive(array, pivot_index + 1, high);
-    }
-}
+#include <string.h>
+#include <stdio.h>
 
 void quick_sort(int *array, size_t size)
 {
-    if (array == NULL || size < 2)
-    {
-        return;
-    }
+    size_t low = 0, high = size - 1, i, j, temp, partition_index, k;
+    int pivot;
 
-    quick_sort_recursive(array, 0, size - 1);
+    if (!array || size < 2)
+        return;
+
+    if (low < high)
+    {
+        pivot = array[high];
+        i = low - 1;
+
+        for (j = low; j < high; j++)
+        {
+            if (array[j] < pivot)
+            {
+                i++;
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+
+        partition_index = i + 1;
+
+        for (k = 0; k < size; k++)
+        {
+            if (k != 0)
+                printf(", ");
+            printf("%d", array[k]);
+        }
+        printf("\n");
+
+        if (partition_index > low)
+            quick_sort(array, partition_index);
+        if (partition_index + 1 < high)
+            quick_sort(array + partition_index + 1, size - (partition_index + 1)); 
+    }
 }
 
