@@ -10,15 +10,16 @@
  * @array: int
  * @size: size_t
  */
-void quick_sort(int *array, size_t size)
+ void quick_sort(int *array, size_t size)
 {
 
-        int low = 0, high = (int)(size - 1), pivot, i, j, temp, partition_index;
+        size_t low = 0, high = size - 1, i, j, k, temp, partition_index;
+        int pivot;
 
         if (!array || size < 2)
                 return;
 
-        while (low < high)
+        if (low < high)
         {
                 pivot = array[high];
                 i = low - 1;
@@ -31,19 +32,29 @@ void quick_sort(int *array, size_t size)
                                 temp = array[i];
                                 array[i] = array[j];
                                 array[j] = temp;
-                                print_array(array, size);
+                                for (k = 0; k < size; k++)
+                                {
+                                        if (k !=0)
+                                                printf(", ");
+                                        printf("%d", array[k]);
+                                }
+                                printf("\n");
                         }
                 }
                 temp = array[i + 1];
                 array[i + 1] = array[high];
                 array[high] = temp;
-                print_array(array, size);
-
+                for (k = 0; k < size; k++)
+                        printf("%d", array[k]);
+                printf("\n");
                 partition_index = i + 1;
-                if (partition_index - 1 > low)
-                        high = partition_index - 1;
+                if (partition_index > low)
+                        quick_sort(array, partition_index);
                 else
-                low = partition_index + 1;
+                        low = partition_index + 1;
+                if (partition_index + 1 < high)
+                        quick_sort(array + partition_index + 1, size - (partition_index + 1));
+                else
+                        high = partition_index - 1;
         }
-
 }
