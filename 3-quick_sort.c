@@ -9,10 +9,11 @@
  */
 void swap(int *a, int *b)
 {
-    int temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp;
+	
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /**
@@ -25,51 +26,51 @@ void swap(int *a, int *b)
  */
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
-    int pivot, i, j;
-    int *last_printed_array;  /* Pointer for storing the last printed state */
-    int array_changed;
-
-    /* Dynamically allocate memory for last_printed_array */
-    last_printed_array = (int *)malloc(size * sizeof(int));
-    if (last_printed_array == NULL)
-    {
-        /* Memory allocation failed, return an error or exit */
-        return -1;
-    }
-
-    pivot = array[high];
-    i = low - 1;
-
-    /* Copy the initial state of the array */
-    memcpy(last_printed_array, array, size * sizeof(int));
-
-    for (j = low; j < high; j++)
-    {
-        if (array[j] < pivot)
-        {
-            i++;
-            if (i != j)
-            {
-                swap(&array[i], &array[j]);
-                array_changed = memcmp(last_printed_array, array, size * sizeof(int)); /* Check if array changed */
-                if (array_changed != 0) /* If the array has changed, print it */
-                {
-                    memcpy(last_printed_array, array, size * sizeof(int)); /* Update last printed state */
-                    print_array(array, size);
-                }
-            }
-        }
-    }
-    if (i + 1 != high)
-    {
-        swap(&array[i + 1], &array[high]);
-        array_changed = memcmp(last_printed_array, array, size * sizeof(int)); /* Check if array changed */
-        if (array_changed != 0) /* If the array has changed, print it */
-        {
-            memcpy(last_printed_array, array, size * sizeof(int)); /* Update last printed state */
-            print_array(array, size);
-        }
-    }
+	int pivot, i, j;
+	int *last_printed_array;  /* Pointer for storing the last printed state */
+	int array_changed;
+       	/* Dynamically allocate memory for last_printed_array */
+	last_printed_array = (int *)malloc(size * sizeof(int));
+	
+	if (last_printed_array == NULL)
+	{
+		return -1;
+	}
+	
+	pivot = array[high];
+       	i = low - 1;
+	
+	/* Copy the initial state of the array */
+	memcpy(last_printed_array, array, size * sizeof(int));
+	for (j = low; j < high; j++)
+	{
+		if (array[j] < pivot)
+		{
+			i++;
+			if (i != j)
+			{
+				swap(&array[i], &array[j]);
+				array_changed = memcmp(last_printed_array,
+						array, size * sizeof(int)); /* Check if array changed */
+				if (array_changed != 0) /* If the array has changed, print it */
+				{
+					memcpy(last_printed_array, array, size * sizeof(int)); /* Update last printed state */
+					print_array(array, size);
+				}
+			}
+		}
+	}
+	if (i + 1 != high)
+    	{
+		swap(&array[i + 1], &array[high]);
+		array_changed = memcmp(last_printed_array, array, size * sizeof(int)); /* Check if array changed */
+        	
+		if (array_changed != 0) /* If the array has changed, print it */
+		{
+			memcpy(last_printed_array, array, size * sizeof(int)); /* Update last printed state */
+			print_array(array, size);
+	   	}
+	}
 
     /* Free the dynamically allocated memory */
     free(last_printed_array);
