@@ -13,9 +13,10 @@
 void quick_sort(int *array, size_t size)
 {
 
-        int low = 0, high = (int)(size - 1), pivot, i, j, temp, partition_index;
+        size_t low = 0, high = (int)(size - 1), i, j, temp, partition_index;
+	int pivot;
 
-        if (!array || size < 2)
+        if (array == NULL || size < 2)
                 return;
 
         while (low < high)
